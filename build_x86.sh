@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT="$(pwd)/images"
-BUILD_VERSION="21.02.5"
+BUILD_VERSION="21.02.7"
 BUILDER="https://downloads.openwrt.org/releases/${BUILD_VERSION}/targets/x86/64/openwrt-imagebuilder-${BUILD_VERSION}-x86-64.Linux-x86_64.tar.xz"
 KERNEL_PARTSIZE=200 #Kernel-Partitionsize in MB
 ROOTFS_PARTSIZE=3096 #Rootfs-Partitionsize in MB
@@ -27,7 +27,7 @@ sed -i "s/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=$ROOTFS
 make image PROFILE="generic" \
            PACKAGES="kmod-rt2800-usb rt2800-usb-firmware kmod-rtl8192cu \
                      kmod-cfg80211 kmod-lib80211 kmod-mac80211 wpa-supplicant hostapd \
-                     base-files block-mount fdisk luci-app-minidlna minidlna samba4-server \
+                     base-files block-mount fdisk firewall luci-app-minidlna minidlna samba4-server \
                      samba4-libs luci-app-samba4 wireguard-tools luci-app-wireguard wpa-cli \
                      openvpn-openssl luci-app-openvpn watchcat openssh-sftp-client \
                      bash luci-base luci-ssl luci-mod-admin-full luci-theme-bootstrap \
@@ -41,7 +41,7 @@ make image PROFILE="generic" \
                      kmod-usb-core kmod-usb3 dnsmasq dropbear e2fsprogs \
                      zlib wireless-regdb f2fsck openssh-sftp-server \
                      kmod-usb-wdm kmod-usb-net-ipheth usbmuxd kmod-usb-net-asix-ax88179 \
-                     kmod-usb-net-cdc-ether mount-utils kmod-rtl8xxxu kmod-rtl8187 \
+                     kmod-usb-net-cdc-ether kmod-usb-net-rtl8152 mount-utils kmod-rtl8xxxu kmod-rtl8187 \
                      kmod-rtl8xxxu rtl8188eu-firmware kmod-rtl8192ce kmod-rtl8192cu kmod-rtl8192de \
                      adblock luci-app-adblock kmod-fs-squashfs squashfs-tools-unsquashfs squashfs-tools-mksquashfs \
                      luci-app-uhttpd \
