@@ -25,26 +25,220 @@ sed -i "s/CONFIG_TARGET_KERNEL_PARTSIZE=.*/CONFIG_TARGET_KERNEL_PARTSIZE=$KERNEL
 sed -i "s/CONFIG_TARGET_ROOTFS_PARTSIZE=.*/CONFIG_TARGET_ROOTFS_PARTSIZE=$ROOTFS_PARTSIZE/g" .config
 
 make image PROFILE="generic" \
-           PACKAGES="kmod-rt2800-usb rt2800-usb-firmware kmod-rtl8192cu \
-                     kmod-cfg80211 kmod-lib80211 kmod-mac80211 wpa-supplicant hostapd \
-                     base-files block-mount fdisk firewall luci-app-minidlna minidlna samba4-server \
-                     samba4-libs luci-app-samba4 wireguard-tools luci-app-wireguard wpa-cli \
-                     openvpn-openssl luci-app-openvpn watchcat openssh-sftp-client \
-                     bash luci-base luci-ssl luci-mod-admin-full luci-theme-bootstrap \
-                     kmod-usb-storage kmod-usb-ohci kmod-usb-uhci e2fsprogs fdisk resize2fs \
-                     htop debootstrap luci-compat luci-lib-ipkg dnsmasq luci-app-ttyd \
-                     irqbalance ethtool netperf speedtest-netperf iperf3 \
-                     curl wget rsync file htop lsof less mc tree usbutils bash diffutils \
-                     openssh-sftp-server nano luci-app-ttyd kmod-fs-exfat \
-                     kmod-usb-storage block-mount luci-app-minidlna kmod-fs-ext4 \
-                     urngd usign vpn-policy-routing wg-installer-client wireguard-tools \
-                     kmod-usb-core kmod-usb3 dnsmasq dropbear e2fsprogs \
-                     zlib wireless-regdb f2fsck openssh-sftp-server \
-                     kmod-usb-wdm kmod-usb-net-ipheth usbmuxd kmod-usb-net-asix-ax88179 \
-                     kmod-usb-net-cdc-ether kmod-usb-net-rtl8152 mount-utils kmod-rtl8xxxu kmod-rtl8187 \
-                     kmod-rtl8xxxu rtl8188eu-firmware kmod-rtl8192ce kmod-rtl8192cu kmod-rtl8192de \
-                     adblock luci-app-adblock kmod-fs-squashfs squashfs-tools-unsquashfs squashfs-tools-mksquashfs \
-                     luci-app-uhttpd \
-                     kmod-fs-f2fs kmod-fs-vfat git git-http jq" \
-            FILES="${BASEDIR}/files/" \
-            BIN_DIR="${OUTPUT}"
+PACKAGES="adblock \
+	base-files \
+	bash \
+	beep \
+	block-mount \
+	busybox \
+	ca-bundle \
+	cgi-io \
+	curl \
+	debootstrap \
+	diffutils \
+	dnsmasq \
+	dropbear \
+	e2fsprogs \
+	ethtool \
+	f2fsck \
+	fdisk \
+	file \
+	firewall \
+	fstools \
+	fwtool \
+	gdisk \
+	getrandom \
+	git \
+	git-http \
+	grub2 \
+	grub2-efi \
+	hdparm \
+	hostapd \
+	htop \
+	ip6tables \
+	iperf3 \
+	iptables \
+	irqbalance \
+	jq \
+	jshn \
+	jsonfilter \
+	kernel \
+	kmod-bnx2 \
+	kmod-button-hotplug \
+	kmod-cfg80211 \
+	kmod-e1000 \
+	kmod-e1000e \
+	kmod-forcedeth \
+	kmod-fs-exfat \
+	kmod-fs-ext4 \
+	kmod-fs-f2fs \
+	kmod-fs-squashfs \
+	kmod-fs-vfat \
+	kmod-igb \
+	kmod-input-core \
+	kmod-ip6tables \
+	kmod-ipt-conntrack \
+	kmod-ipt-core \
+	kmod-ipt-nat \
+	kmod-ipt-offload \
+	kmod-ixgbe \
+	kmod-lib80211 \
+	kmod-lib-crc-ccitt \
+	kmod-mac80211 \
+	kmod-nf-conntrack \
+	kmod-nf-conntrack6 \
+	kmod-nf-flow \
+	kmod-nf-ipt \
+	kmod-nf-ipt6 \
+	kmod-nf-nat \
+	kmod-nf-reject \
+	kmod-nf-reject6 \
+	kmod-nls-base \
+	kmod-nls-cp437 \
+	kmod-nls-iso8859-1 \
+	kmod-nls-utf8 \
+	kmod-ppp \
+	kmod-pppoe \
+	kmod-pppox \
+	kmod-r8169 \
+	kmod-rt2800-usb \
+	kmod-rtl8187 \
+	kmod-rtl8192ce \
+	kmod-rtl8192cu \
+	kmod-rtl8192de \
+	kmod-rtl8xxxu \
+	kmod-slhc \
+	kmod-usb3 \
+	kmod-usb-core \
+	kmod-usb-net-asix-ax88179 \
+	kmod-usb-net-cdc-ether \
+	kmod-usb-net-ipheth \
+	kmod-usb-net-rtl8152 \
+	kmod-usb-ohci \
+	kmod-usb-storage \
+	kmod-usb-storage-extras \
+	kmod-usb-storage-uas \
+	kmod-usb-uhci \
+	kmod-usb-wdm \
+	less \
+	libblkid \
+	libblobmsg-json \
+	libc \
+	libcomerr \
+	libext2fs \
+	libf2fs \
+	libip4tc \
+	libip6tc \
+	libiwinfo \
+	libiwinfo-data \
+	libiwinfo-lua \
+	libjson-c \
+	libjson-script \
+	liblua \
+	liblucihttp \
+	liblucihttp-lua \
+	libnl-tiny \
+	libsmartcols \
+	libss \
+	libubox \
+	libubus \
+	libubus-lua \
+	libuci \
+	libuclient \
+	libustream-wolfssl \
+	libuuid \
+	libwolfssl \
+	libxtables \
+	logd \
+	losetup \
+	lsblk \
+	lsof \
+	lua \
+	luci \
+	luci-app-adblock \
+	luci-app-banip \
+	luci-app-firewall \
+	luci-app-minidlna \
+	luci-app-openvpn \
+	luci-app-opkg \
+	luci-app-samba4 \
+	luci-app-sqm \
+	luci-app-ttyd \
+	luci-app-uhttpd \
+	luci-app-upnp \
+	luci-app-wireguard \
+	luci-base \
+	luci-compat \
+	luci-lib-base \
+	luci-lib-ip \
+	luci-lib-ipkg \
+	luci-lib-jsonc \
+	luci-lib-nixio \
+	luci-mod-admin-full \
+	luci-mod-network \
+	luci-mod-status \
+	luci-mod-system \
+	luci-proto-ipv6 \
+	luci-proto-ppp \
+	luci-ssl \
+	luci-theme-bootstrap \
+	mc \
+	minidlna \
+	mkf2fs \
+	mount-utils \
+	mtd \
+	nano \
+	netifd \
+	netperf \
+	ntfs-3g \
+	odhcp6c \
+	odhcpd-ipv6only \
+	openssh-sftp-client \
+	openssh-sftp-server \
+	openvpn-openssl \
+	openwrt-keyring \
+	opkg \
+	parted \
+	partx-utils \
+	ppp \
+	ppp-mod-pppoe \
+	procd \
+	px5g-wolfssl \
+	resize2fs \
+	rpcd \
+	rpcd-mod-file \
+	rpcd-mod-iwinfo \
+	rpcd-mod-luci \
+	rpcd-mod-rrdns \
+	rsync \
+	rt2800-usb-firmware \
+	rtl8188eu-firmware \
+	samba4-libs \
+	samba4-server \
+	speedtest-netperf \
+	squashfs-tools-mksquashfs \
+	squashfs-tools-unsquashfs \
+	tree \
+	ubox \
+	ubus \
+	ubusd \
+	uci \
+	uclient-fetch \
+	uhttpd \
+	uhttpd-mod-ubus \
+	urandom-seed \
+	urngd \
+	usbmuxd \
+	usbutils \
+	usign \
+	vpn-policy-routing \
+	watchcat \
+	wget \
+	wg-installer-client \
+	wireguard-tools \
+	wireless-regdb \
+	wpa-cli \
+	wpa-supplicant \
+	zlib" \
+FILES="${BASEDIR}/files/" \
+BIN_DIR="${OUTPUT}"
