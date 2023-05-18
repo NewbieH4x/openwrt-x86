@@ -3,8 +3,8 @@
 OUTPUT="$(pwd)/images"
 BUILD_VERSION="21.02.7"
 BUILDER="https://downloads.openwrt.org/releases/${BUILD_VERSION}/targets/x86/64/openwrt-imagebuilder-${BUILD_VERSION}-x86-64.Linux-x86_64.tar.xz"
-KERNEL_PARTSIZE=200 #Kernel-Partitionsize in MB
-ROOTFS_PARTSIZE=3998 #Rootfs-Partitionsize in MB
+KERNEL_PARTSIZE=128 #Kernel-Partitionsize in MB
+ROOTFS_PARTSIZE=1642 #Rootfs-Partitionsize in MB
 BASEDIR=$(realpath "$0" | xargs dirname)
 
 # download image builder
@@ -16,6 +16,8 @@ fi
 [ -d "${OUTPUT}" ] || mkdir "${OUTPUT}"
 
 cd openwrt-*/
+mv ${BASEDIR}/packages/* $(pwd)/packages/
+ls -la $(pwd)/packages/
 
 # clean previous images
 make clean
@@ -43,6 +45,8 @@ uclient-fetch uhttpd uhttpd-mod-ubus urandom-seed urngd usign parted gdisk lsblk
 block-mount fdisk samba4-server samba4-libs luci-app-samba4 openssh-sftp-client openssh-sftp-server \
 bash luci-theme-bootstrap kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas usbutils git git-http jq \
 kmod-usb-ohci kmod-usb-uhci kmod-fs-exfat kmod-fs-ext4 kmod-usb-core kmod-usb2 kmod-usb3 ntfs-3g hdparm f2fsck mount-utils \
-kmod-fs-squashfs squashfs-tools-unsquashfs squashfs-tools-mksquashfs kmod-fs-f2fs kmod-fs-vfat" \
+kmod-fs-squashfs squashfs-tools-unsquashfs squashfs-tools-mksquashfs kmod-fs-f2fs kmod-fs-vfat \
+boost boost-system libpcre2-16 libQt6Core libQt6Network libQt6Sql libQt6Xml rblibtorrent qt6-plugin-libqsqlite \
+qt6-plugin-libqopensslbackend qBittorrent luci-app-qbittorrent luci-app-poweroff" \
 FILES="${BASEDIR}/files/" \
 BIN_DIR="${OUTPUT}"
