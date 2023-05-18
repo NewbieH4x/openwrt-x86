@@ -3,8 +3,8 @@
 OUTPUT="$(pwd)/images"
 BUILD_VERSION="21.02.7"
 BUILDER="https://downloads.openwrt.org/releases/${BUILD_VERSION}/targets/x86/64/openwrt-imagebuilder-${BUILD_VERSION}-x86-64.Linux-x86_64.tar.xz"
-KERNEL_PARTSIZE=200 #Kernel-Partitionsize in MB
-ROOTFS_PARTSIZE=3998 #Rootfs-Partitionsize in MB
+KERNEL_PARTSIZE=128 #Kernel-Partitionsize in MB
+ROOTFS_PARTSIZE=1642 #Rootfs-Partitionsize in MB
 BASEDIR=$(realpath "$0" | xargs dirname)
 
 # download image builder
@@ -16,6 +16,10 @@ fi
 [ -d "${OUTPUT}" ] || mkdir "${OUTPUT}"
 
 cd openwrt-*/
+echo "Moving IPKs to packages directory..."
+mv ${BASEDIR}/packages/* ${pwd}/packages/
+ls -la ${pwd}/packages/
+echo "Done!"
 
 # clean previous images
 make clean
