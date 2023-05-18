@@ -1,6 +1,5 @@
-name: Build OpenWRT Image
+name: Build OpenWRT Images
 on:
-  - push
   - workflow_dispatch
 
 jobs:
