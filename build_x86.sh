@@ -18,6 +18,8 @@ fi
 cd openwrt-*/
 mv ${BASEDIR}/packages/* $(pwd)/packages/
 ls -la $(pwd)/packages/
+sed -i 's/--force-postinstall/--force-postinstall --force-overwrite/g' $(pwd)/include/rootfs.mk
+cat $(pwd)/include/rootfs.mk
 
 # clean previous images
 make clean
