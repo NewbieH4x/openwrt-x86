@@ -1,0 +1,5 @@
+config qbittorrent
+		option profile_dir '/etc'
+		option download_dir '/root/torrent_download'
+		option port '8081'
+		option enable '0'
